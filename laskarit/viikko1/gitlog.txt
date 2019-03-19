@@ -1,0 +1,97 @@
+commit 9de216ee8700a18e00a9b78acfb24db139835982
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 21:16:01 2018 +0200
+
+    poistettu file2.txt ja nimetty file2 -> file22
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit c004d7f8be1f111b597079041ed4512ec4b103ed
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 21:06:12 2018 +0200
+
+    tiedostoja
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 73f20f59488b1a50d420060193321afadb1a5134
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 14:17:47 2018 +0200
+
+    muutettiin eka.txt ja kolmas.txt
+
+ eka.txt    | 2 ++
+ kolmas.txt | 1 +
+ 2 files changed, 3 insertions(+)
+
+commit 6f3fd17922d6f991a0a06b5816e1fce1d9c3fab7
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 14:12:32 2018 +0200
+
+    muutettiin nimi tiedosto.txt -> eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 30c733517a31b17915f90c6d7da18b671a7030b8
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 14:10:42 2018 +0200
+
+    poistettiin toinen.txt
+
+ toinen.txt | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit fae3ad6b5f0bedc9773bf699cf167185fd433442
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 13:45:31 2018 +0200
+
+    luotiin stuff/tavaraa.txt
+
+ stuff/tavaraa.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d63ba02b50d22eb9f3988ec5937723db8f85ddb2
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 13:43:01 2018 +0200
+
+    muutettiin kolmas.txt ja toinen.txt
+
+ kolmas.txt | 1 +
+ toinen.txt | 2 ++
+ 2 files changed, 3 insertions(+)
+
+commit c11e163c1a1e6669d1f2b76abdba8ab067c02fe9
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 13:40:24 2018 +0200
+
+    kolmas luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d6e31fe632a15525410442efb2764a602e89a361
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 13:36:27 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit be8fdf9eb1940ed14835ad4cc0372a9177b01c31
+Author: samvancart <sam02cart@gmail.com>
+Date:   Wed Oct 31 13:32:41 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ 
+ muutos
