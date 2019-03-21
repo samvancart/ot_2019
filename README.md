@@ -4,5 +4,5 @@
 
 [laskarit](https://github.com/samvancart/ot_2019/tree/master/laskarit/viikko2)
 
-[komentorivi.txt](https://github.com/samvancart/ot_2019/blob/master/laskarit/viikko1/komentorivi.txt)
+[vaatimusmäärittely](https://github.com/samvancart/ot_2019/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
