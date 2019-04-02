@@ -3,7 +3,7 @@
 ## Sovelluksen tarkoitus
 
 Sovelluksen avulla käyttäjän on mahdollista lisätä sähköposteja omalle www.mailerlite.com -sivustolla olevalle sähköpostilistalleen.
-Lisääminen tapahtuu mailerliten tarjoaman API:n avulla. Lisätty sähköposti talletetaan myös käyttäjän tietokoneella olevaan tiedostoon.
+Lisääminen tapahtuu mailerliten tarjoaman API:n avulla.
 
 ## Ohjelman ulkoasu
 
