@@ -1,9 +1,13 @@
 package mail_list_manager.services;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Properties;
+import mail_list_manager.dao.FileApiKeyDao;
+import mail_list_manager.domain.ApiKeyService;
 import mail_list_manager.domain.MailerGroup;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
 import org.apache.commons.httpclient.Header;
@@ -13,14 +17,30 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
-public class GroupService {
-// Mailerlite API Key tähän
-    private String API_KEY = ""; 
+public class Groups {
+
+    private ApiKeyService keyService;
+    private String key = "";
     private String url = "https://api.mailerlite.com/api/v2/";
+
+    public Groups()  {
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileInputStream("config.properties"));
+        } catch (Exception e) {
+           
+        }
+
+        String keyFile = properties.getProperty("keyFile");
+
+        FileApiKeyDao dao = new FileApiKeyDao(keyFile);
+        keyService = new ApiKeyService(dao);
+        key = keyService.getKey();
+    }
 
     public String getGroupsAsString() {
         String response = "";
-        Header headerKey = new Header("X-MailerLite-ApiKey", API_KEY);
+        Header headerKey = new Header("X-MailerLite-ApiKey", key);
 
         HttpClient client = new HttpClient();
 
@@ -48,6 +68,7 @@ public class GroupService {
             System.err.println("Fatal transport error: " + e.getMessage());
             e.printStackTrace();
         } finally {
+            // Release the connection.
             method.releaseConnection();
         }
         return response;

@@ -1,11 +1,13 @@
-
 package mail_list_manager.ui;
 
-import java.io.File;
+import java.io.FileInputStream;
+import java.util.Properties;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -13,27 +15,52 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+import javafx.stage.WindowEvent;
+import mail_list_manager.dao.FileApiKeyDao;
+import mail_list_manager.domain.ApiKeyService;
 import mail_list_manager.domain.MailerGroup;
-import mail_list_manager.services.GroupService;
-import mail_list_manager.services.SubscriberService;
+import mail_list_manager.services.Groups;
+import mail_list_manager.services.Subscribers;
 import org.controlsfx.control.NotificationPane;
 
 public class MlmUi extends Application {
 
     private Scene scene;
-    private GroupService gs = new GroupService();
-    private SubscriberService ss = new SubscriberService();
+    private Groups g = new Groups();
+    private Subscribers s = new Subscribers();
+    private boolean keyExists = false;
+    private ApiKeyService keyService;
+    private boolean isRestarted = false;
+
+    @Override
+    public void init() throws Exception {
+        Properties properties = new Properties();
+
+
+        properties.load(new FileInputStream("config.properties"));
+
+        String keyFile = properties.getProperty("keyFile");
+        FileApiKeyDao dao = new FileApiKeyDao(keyFile);
+        keyExists = dao.getKeyExists();
+        keyService = new ApiKeyService(dao);
+    }
+
+    public void restart(Stage stage) throws Exception {
+        init();
+        stage.close();
+        g = new Groups();
+        isRestarted = true;
+        start(stage);
+        stage.show();
+
+    }
 
     @Override
     @SuppressWarnings("Convert2Lambda")
@@ -53,6 +80,18 @@ public class MlmUi extends Application {
         mainGp.setVgap(10);
         mainGp.setPadding(new Insets(25, 25, 25, 25));
 
+        EventHandler<WindowEvent> startAppHandler
+                = new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                if (!keyExists) {
+                    mainNp.setText("No API key specified. Go to settings tab to specify key.");
+                    mainNp.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
+                    mainNp.show();
+                }
+            }
+        };
+
         Label nameLabel = new Label("Name:");
         mainGp.add(nameLabel, 0, 1);
 
@@ -69,29 +108,11 @@ public class MlmUi extends Application {
         mainGp.add(groupsLabel, 3, 1);
 
         ObservableList<MailerGroup> groups = FXCollections.observableArrayList();
-        groups.addAll(gs.getParsedGroups());
+        groups.addAll(g.getParsedGroups());
 
         ComboBox groupsCb = new ComboBox(groups);
         mainGp.add(groupsCb, 4, 1);
-        
         groupsCb.getSelectionModel().selectFirst();
-        groupsCb.setCellFactory(new Callback<ListView<MailerGroup>, ListCell<MailerGroup>>() {
-            @Override
-            public ListCell<MailerGroup> call(ListView<MailerGroup> p) {
-                final ListCell<MailerGroup> cell = new ListCell<MailerGroup>() {
-                    @Override
-                    protected void updateItem(MailerGroup group, boolean b) {
-                        super.updateItem(group, b);
-                        if (group != null) {
-                            setText(group.getName());
-                        } else {
-                            setText(null);
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
 
         Button addButton = new Button("Add to Mailerlite");
         addButton.setMinSize(120, 40);
@@ -101,6 +122,7 @@ public class MlmUi extends Application {
         mainGp.add(buttonHb, 1, 4);
 
         addButton.setOnAction(e -> {
+            s = new Subscribers();
             MailerGroup group = (MailerGroup) groupsCb.getValue();
             String name = nameField.getText();
             String email = emailField.getText();
@@ -109,7 +131,7 @@ public class MlmUi extends Application {
                 mainNp.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
                 mainNp.show();
             } else {
-                String response = ss.createSubscriber(group, name, email);
+                String response = s.createSubscriber(group, name, email);
                 if (response != null) {
                     emailField.setText("");
                     nameField.setText("");
@@ -135,23 +157,49 @@ public class MlmUi extends Application {
 
         GridPane settingsFormGp = new GridPane();
 
-        Label apiKeyLabel = new Label("API Key:");
-        settingsFormGp.add(apiKeyLabel, 0, 1);
+        Label keyLabel = new Label("API Key:");
+        settingsFormGp.add(keyLabel, 0, 1);
 
-        TextField apiKeyInput = new TextField();
-        settingsFormGp.add(apiKeyInput, 1, 1);
+        TextField keyField = new TextField(keyService.getKey());
+        if (keyExists) {
+            keyField.setEditable(false);
+        }
+        keyField.setPrefWidth(230);
+        settingsFormGp.add(keyField, 1, 1);
 
-        Label passwordLabel = new Label("Password:");
-        settingsFormGp.add(passwordLabel, 0, 2);
+        Button editButton = new Button("Edit");
+        settingsFormGp.add(editButton, 2, 1);
 
-        PasswordField passwordInput = new PasswordField();
-        settingsFormGp.add(passwordInput, 1, 2);
+        editButton.setOnAction(e -> {
+            keyField.setEditable(true);
+            keyField.requestFocus();
+            keyField.selectAll();
+        });
 
-        Button saveButton = new Button("Save to");
+        EventHandler<MouseEvent> keyFieldHandler
+                = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (keyExists) {
+                    keyField.setEditable(false);
+                }
+            }
+        };
+
+        EventHandler<Event> menuTabChange
+                = new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                if (!keyExists && isRestarted) {
+                    mainNp.setText("No API key specified. Go to settings tab to specify key.");
+                    mainNp.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
+                    mainNp.show();
+                }
+            }
+        };
+
+        Button saveButton = new Button("Save");
         settingsFormGp.add(saveButton, 0, 3);
-
-        Button browseButton = new Button("...");
-        settingsFormGp.add(browseButton, 1, 3);
 
         settingsGp.add(settingsFormGp, 0, 1);
         settingsFormGp.setVisible(false);
@@ -161,7 +209,7 @@ public class MlmUi extends Application {
         settingsGp.setAlignment(Pos.TOP_LEFT);
         settingsGp.setHgap(10);
         settingsGp.setVgap(10);
-        settingsGp.setPadding(new Insets(25, 25, 25, 25));
+        settingsGp.setPadding(new Insets(10, 10, 10, 10));
 
         settingsFormGp.setAlignment(Pos.TOP_LEFT);
         settingsFormGp.setHgap(10);
@@ -185,12 +233,24 @@ public class MlmUi extends Application {
                 settingsFormGp.setVisible(false);
             }
         });
-        FileChooser fc = new FileChooser();
-        browseButton.setOnAction(e -> {
-            File file = fc.showOpenDialog(primaryStage);
-            if (file != null) {
-                browseButton.setText(file.getAbsolutePath());
-                
+
+        saveButton.setOnAction(e -> {
+            String key = keyField.getText();
+            if (key == null || key.equals("")) {
+                key = "";
+                settingsNp.setText("Warning: No key provided");
+                settingsNp.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
+                settingsNp.show();
+                keyExists = false;
+            } else {
+                keyField.setEditable(false);
+                keyExists = true;
+            }
+            try {
+                keyService.createKey(key);
+                restart(primaryStage);
+            } catch (Exception ex) {
+
             }
         });
 
@@ -200,6 +260,9 @@ public class MlmUi extends Application {
         menuTabs.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         scene = new Scene(menuTabs, 500, 250);
+
+        primaryStage.setOnShown(startAppHandler);
+        settingsFormGp.addEventHandler(MouseEvent.MOUSE_CLICKED, keyFieldHandler);
 
         menuTabs.prefHeightProperty().bind(scene.heightProperty());
         menuTabs.prefWidthProperty().bind(scene.widthProperty());
