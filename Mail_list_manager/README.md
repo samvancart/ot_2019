@@ -8,3 +8,7 @@ Sovellusksen avulla käyttäjä voi lisätä henkilöitä ja heidän sähköpost
 
 [työaikakirjanpito](https://github.com/samvancart/ot_2019/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
+## Releaset
+
+[viikko 5] (https://github.com/samvancart/ot_2019/releases)
+

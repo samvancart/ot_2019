@@ -7,5 +7,6 @@ päivä | aika | mitä tein
   5.4 | 2,5h | alustava tietojen tallennus
   6.4 | 3h   | tietojen tallennus jatkuu
   8.4 | 3h   | tietojen tallennus jatkuu
+ 16.4 | 3h   | jar release
 ----- | ---- | ---------
- yht. | 21,5h|      
+ yht. | 24,5h|      
