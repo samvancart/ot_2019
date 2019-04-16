@@ -54,7 +54,7 @@ public class Groups {
             int statusCode = client.executeMethod(method);
 
             if (statusCode != HttpStatus.SC_OK) {
-                System.err.println("Method failed: " + method.getStatusLine());
+//                System.err.println("Method failed: " + method.getStatusLine());
             }
             BufferedReader rd = new BufferedReader(
                     new InputStreamReader(method.getResponseBodyAsStream()));

@@ -43,9 +43,9 @@ public class MlmUi extends Application {
     public void init() throws Exception {
         Properties properties = new Properties();
 
-
+       
         properties.load(new FileInputStream("config.properties"));
-
+        
         String keyFile = properties.getProperty("keyFile");
         FileApiKeyDao dao = new FileApiKeyDao(keyFile);
         keyExists = dao.getKeyExists();
