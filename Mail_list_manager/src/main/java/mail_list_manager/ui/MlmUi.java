@@ -6,7 +6,6 @@ import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -182,18 +181,6 @@ public class MlmUi extends Application {
             public void handle(MouseEvent event) {
                 if (keyExists) {
                     keyField.setEditable(false);
-                }
-            }
-        };
-
-        EventHandler<Event> menuTabChange
-                = new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                if (!keyExists && isRestarted) {
-                    mainNp.setText("No API key specified. Go to settings tab to specify key.");
-                    mainNp.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
-                    mainNp.show();
                 }
             }
         };
