@@ -3,6 +3,7 @@ package mail_list_manager.services;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 import mail_list_manager.dao.FileApiKeyDao;
@@ -24,7 +25,8 @@ public class Subscribers {
     public Subscribers() {
         Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream("config.properties"));
+            InputStream is = getClass().getClassLoader().getResourceAsStream("config.properties");
+            properties.load(is);
         } catch (Exception e) {
 
         }

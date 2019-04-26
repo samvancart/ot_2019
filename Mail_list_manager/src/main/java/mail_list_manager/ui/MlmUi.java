@@ -1,6 +1,6 @@
 package mail_list_manager.ui;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -43,9 +43,9 @@ public class MlmUi extends Application {
     public void init() throws Exception {
         Properties properties = new Properties();
 
-       
-        properties.load(new FileInputStream("config.properties"));
-        
+        InputStream is = getClass().getClassLoader().getResourceAsStream("config.properties");
+        properties.load(is);
+
         String keyFile = properties.getProperty("keyFile");
         FileApiKeyDao dao = new FileApiKeyDao(keyFile);
         keyExists = dao.getKeyExists();
