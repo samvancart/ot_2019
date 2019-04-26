@@ -12,6 +12,8 @@ Sovellusksen avulla käyttäjä voi lisätä henkilöitä ja heidän sähköpost
 
 [viikko 5](https://github.com/samvancart/ot_2019/releases)
 
+[viikko 6](https://github.com/samvancart/ot_2019/releases)
+
 ## Komentorivitoiminnot
 
 ### Suoritettavan jarin generointi
