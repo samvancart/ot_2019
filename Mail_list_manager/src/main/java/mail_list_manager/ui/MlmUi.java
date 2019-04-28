@@ -36,7 +36,6 @@ public class MlmUi extends Application {
     private Subscribers s = new Subscribers();
     private boolean keyExists = false;
     private ApiKeyService keyService;
-    private boolean isRestarted = false;
 
     @Override
     public void init() throws Exception {
@@ -55,7 +54,6 @@ public class MlmUi extends Application {
         init();
         stage.close();
         g = new Groups();
-        isRestarted = true;
         start(stage);
         stage.show();
 

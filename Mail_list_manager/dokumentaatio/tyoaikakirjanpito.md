@@ -8,5 +8,7 @@ päivä | aika | mitä tein
   6.4 | 3h   | tietojen tallennus jatkuu
   8.4 | 3h   | tietojen tallennus jatkuu
  16.4 | 3h   | jar release
+ 26.4 | 2h   | viikko 6 release
+ 28.4 | 3h   | testausta
 ----- | ---- | ---------
- yht. | 24,5h|      
+ yht. | 29,5h|      

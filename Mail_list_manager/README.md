@@ -16,6 +16,18 @@ Sovellusksen avulla käyttäjä voi lisätä henkilöitä ja heidän sähköpost
 
 ## Komentorivitoiminnot
 
+### Testaus
+
+Testit suoritetaan komennolla
+
+`mvn test`
+
+testikattavuusraportti luodaan komennolla
+
+`mvn jacoco:report`
+
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
+
 ### Suoritettavan jarin generointi
 
 Komento
