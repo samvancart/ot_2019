@@ -89,17 +89,23 @@ public class MlmUi extends Application {
             }
         };
 
-        Label nameLabel = new Label("Name:");
-        mainGp.add(nameLabel, 0, 1);
+        Label firstNameLabel = new Label("First name:");
+        mainGp.add(firstNameLabel, 0, 1);
 
-        TextField nameField = new TextField();
-        mainGp.add(nameField, 1, 1);
+        TextField firstNameField = new TextField();
+        mainGp.add(firstNameField, 1, 1);
+
+        Label lastNameLabel = new Label("Last name:");
+        mainGp.add(lastNameLabel, 0, 2);
+
+        TextField lastNameField = new TextField();
+        mainGp.add(lastNameField, 1, 2);
 
         Label emailLabel = new Label("Email:");
-        mainGp.add(emailLabel, 0, 2);
+        mainGp.add(emailLabel, 0, 3);
 
         TextField emailField = new TextField();
-        mainGp.add(emailField, 1, 2);
+        mainGp.add(emailField, 1, 3);
 
         Label groupsLabel = new Label("Group:");
         mainGp.add(groupsLabel, 3, 1);
@@ -121,18 +127,20 @@ public class MlmUi extends Application {
         addButton.setOnAction(e -> {
             s = new Subscribers();
             MailerGroup group = (MailerGroup) groupsCb.getValue();
-            String name = nameField.getText();
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
             String email = emailField.getText();
-            if (name.equals("") || email.equals("") || !email.contains("@")) {
+            if (firstName.equals("") || lastName.equals("") || email.equals("") || !email.contains("@")) {
                 mainNp.setText("Please enter valid name and email");
                 mainNp.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
                 mainNp.show();
             } else {
-                String response = s.createSubscriber(group, name, email);
+                String response = s.createSubscriber(group, firstName, lastName, email);
                 if (response != null) {
                     emailField.setText("");
-                    nameField.setText("");
-                    mainNp.setText("Added " + name + " (" + email + ") to " + group.getName() + " succesfully!");
+                    firstNameField.setText("");
+                    lastNameField.setText("");
+                    mainNp.setText("Added " + firstName + " " + lastName + " (" + email + ") to " + group.getName() + " succesfully!");
                 } else {
                     mainNp.setText("Error! Failed to send.");
                 }
