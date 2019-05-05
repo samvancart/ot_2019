@@ -1,5 +1,5 @@
 # Sähköpostilistan apusovellus
-Sovellusksen avulla käyttäjä voi lisätä henkilöitä ja heidän sähköpostejaan valitsemaansa ryhmään www.mailerlite.com -sivustolla sijaitsevalle tililleen.
+Sovelluksen avulla käyttäjä voi lisätä henkilöitä ja heidän sähköpostejaan valitsemaansa ryhmään www.mailerlite.com -sivustolla sijaitsevalle tililleen.
 
 
 ## Dokumentaatio
@@ -16,9 +16,7 @@ Sovellusksen avulla käyttäjä voi lisätä henkilöitä ja heidän sähköpost
 
 ## Releaset
 
-[viikko 5](https://github.com/samvancart/ot_2019/releases)
-
-[viikko 6](https://github.com/samvancart/ot_2019/releases)
+[Loppupalautus](https://github.com/samvancart/ot_2019/releases)
 
 ## Komentorivitoiminnot
 

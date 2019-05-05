@@ -55,7 +55,6 @@ public class Groups {
             int statusCode = client.executeMethod(method);
 
             if (statusCode != HttpStatus.SC_OK) {
-//                System.err.println("Method failed: " + method.getStatusLine());
             }
             BufferedReader rd = new BufferedReader(
                     new InputStreamReader(method.getResponseBodyAsStream()));
@@ -69,7 +68,6 @@ public class Groups {
             System.err.println("Fatal transport error: " + e.getMessage());
             e.printStackTrace();
         } finally {
-            // Release the connection.
             method.releaseConnection();
         }
         return response;

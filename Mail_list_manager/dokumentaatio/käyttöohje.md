@@ -6,8 +6,8 @@ Sovelluksen kaikki ominaisuudet ovat käytössä kun sovelluksen käynnistyshake
 
 ## Ohjelman käynnistäminen
 
-Sovellus käynnistyy henkilöiden lisäys näkymään. Jos käynnistyshakemistosta löytyy tiedosto _key.txt_ niin sovellus ilmoittaa jos API keytä ei ole 
-vielä määritelty. 
+Sovellus käynnistyy henkilöiden lisäys näkymään. Jos käynnistyshakemistosta löytyy tyhjä tiedosto _key.txt_ tai jos tiedostoa ei ole
+niin sovellus ilmoittaa ettei API keytä ole määritelty. 
 
 ## API keyn määrittely
 
