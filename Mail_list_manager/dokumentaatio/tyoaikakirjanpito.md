@@ -10,5 +10,7 @@ päivä | aika | mitä tein
  16.4 | 3h   | jar release
  26.4 | 2h   | viikko 6 release
  28.4 | 3h   | testausta
+ 29.4 | 5,5h | sukunimen lisäysmahdollisuus
+  5.5 | 5h   | dokumentaatiota ja loppupalautus
 ----- | ---- | ---------
- yht. | 29,5h|      
+ yht. | 40h|      

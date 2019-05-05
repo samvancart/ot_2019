@@ -2,7 +2,7 @@
 
 ## Konfigurointi
 
-Sovelluksen kaikki ominaisuudet ovat käytössä kun sovelluksen käynnistyshakemistossa on tekstitiedosto _key.txt_.
+Sovellus ei vaadi erillisiä konfiguraatioita.
 
 ## Ohjelman käynnistäminen
 
