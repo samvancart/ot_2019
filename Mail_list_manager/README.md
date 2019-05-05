@@ -8,7 +8,9 @@ Sovellusksen avulla käyttäjä voi lisätä henkilöitä ja heidän sähköpost
 
 [Vaatimusmäärittely](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/vaatimusmaarittely.md)
 
-[Arkkitehtuutikuvaus](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/arkkitehtuurikuvaus.md)
+[Arkkitehtuurikuvaus](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/arkkitehtuurikuvaus.md)
+
+[Testausdokumentti](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/testaus.md)
 
 [Työaikakirjanpito](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/tyoaikakirjanpito.md)
 
