@@ -4,9 +4,13 @@ Sovellusksen avulla käyttäjä voi lisätä henkilöitä ja heidän sähköpost
 
 ## Dokumentaatio
 
-[vaatimusmäärittely](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/vaatimusmaarittely.md)
+[Käyttöohje](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/k%C3%A4ytt%C3%B6ohje.md)
 
-[työaikakirjanpito](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/tyoaikakirjanpito.md)
+[Vaatimusmäärittely](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/vaatimusmaarittely.md)
+
+[Arkkitehtuutikuvaus](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/arkkitehtuurikuvaus.md)
+
+[Työaikakirjanpito](https://github.com/samvancart/ot_2019/blob/master/Mail_list_manager/dokumentaatio/tyoaikakirjanpito.md)
 
 ## Releaset
 
